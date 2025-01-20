@@ -27,7 +27,8 @@
                 const inputText = inputField.value;
 
                 if (!inputText.trim()) {
-                    outputField.innerHTML = 'Введите текст для перевода';
+                    outputField.innerHTML = translatedText.replace(/\n/g, '<br>');
+
                     return;
                 }
 
@@ -36,12 +37,12 @@
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
-                            'Authorization': 'Bearer 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'
+                            'Authorization': 'Bearer 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'
                         },
                         body: JSON.stringify({
                             model: 'gpt-4o-mini',
                             messages: [
-                                { role: 'system', content: 'Ты програмист, напиши мне чистый код, что бы была нормальная архитектура кода, не пиши все в одну строку, без всяких обьяснений, на языке C' },
+                                { role: 'system', content: 'Ты програмист, напиши мне чистый код, что бы была нормальная архитектура кода, не пиши все в одну строку, без всяких обьяснений, на языке C, когда заканчивается строка делай все на новую строку с помощью \n' },
                                 { role: 'user', content: inputText }
                             ]
                         })
@@ -175,7 +176,7 @@
 		</div>
 		<div class="ouput">
 			<div class="custom-div">
-				<p id="output-text">Translate will be here</p>
+				<pre id="output-text">Translate will be here</pre>
 			</div>
 		</div>
 	</div>
